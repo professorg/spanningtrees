@@ -16,7 +16,7 @@ Array.prototype.without = function(element) {
     return this.filter(e => e != element)
 }
 
-// Example: [a,b,c,d].withoutOneOf([a,d]) => [[b,c,d],[a,b,c]]
+// Example: [[a,b,c,d]].withoutOneOf([a,d]) => [[b,c,d],[a,b,c]]
 Array.prototype.withoutOneOf = function(other) {
     return this.flatMap(a => other.map(e => a.without(e)))
 }
