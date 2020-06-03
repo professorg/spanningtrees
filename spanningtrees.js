@@ -1,19 +1,22 @@
 #!/bin/node
 
-var a   = ["ab","bc","ac"]
-var bc  = ["ce"]
-var bd  = ["cf","ef"]
-var cd  = ["cd","de"]
-var all = ["ab","bc","ac","cd","de","ef","cf","ce"]
+var a   = ["ab","bc","ac"]  // edges in cycle a
+var bc  = ["ce"]            // edges in cycles b and c
+var bd  = ["cf","ef"]       // edges in cycles b and d
+var cd  = ["cd","de"]       // edges in cycles c and d
+var all = ["ab","bc","ac","cd","de","ef","cf","ce"] // all edges
 
+// Example: [a,b].cartesian([c,d]) => [[a,c],[a,d],[b,c],[b,d]]
 Array.prototype.cartesian = function(other) {
     return this.map(i => other.map(j => [i,j]))
 }
 
+// Example: [a,b,c,d].without([a,d]) => [b,c]
 Array.prototype.without = function(element) {
     return this.filter(e => e != element)
 }
 
+// Example: [a,b,c,d].withoutOneOf([a,d]) => [[b,c,d],[a,b,c]]
 Array.prototype.withoutOneOf = function(other) {
     return this.flatMap(a => other.map(e => a.without(e)))
 }
